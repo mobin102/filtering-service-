@@ -35,13 +35,12 @@ class Respond(Resource):
         rectangular_list = (Rectangular(*item.values()) for item in _input)  
         # A List of python dict so we can insert it in DB 
         ready_to_insert = main_rectangular.filter_accepted_rectangular(rectangular_list)
-        # try:
-            # X is object that we can rich to ObjectId of each inserted instance
-        my_col.insert_many(ready_to_insert)
-            # check the number of accepted rectangulars and inserted rectangulars 
-        return {"note":"insertion success"}
-        # except:
-        #     return {"note":"someting went Wrong"}
+        try:
+            #X is object that we can rich to ObjectId of each inserted instance
+            my_col.insert_many(ready_to_insert)
+            return {"note":"insertion success"}
+        except:
+            return {"note":"someting went Wrong"}
 
     def get(self):
         """ 
