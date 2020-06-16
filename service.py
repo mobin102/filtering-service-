@@ -15,8 +15,16 @@ app = Flask(__name__)
 api = Api(app)
 
 class Respond(Resource):
+    """ 
+    description: 
+        main class for Filtering Service
+    """
 
     def post(self):
+        """ 
+        description: 
+        it takes a JSON with the special format and saves proper rectangular
+        """
         _json = request.json
         _main = _json["main"]
         _input = _json["input"]
@@ -26,13 +34,19 @@ class Respond(Resource):
         rectangular_list = (Rectangular(*item.values()) for item in _input)  
         # A List of python dict so we can insert it in DB 
         ready_to_insert = main_rectangular.filter_accepted_rectangular(rectangular_list)
-        # X is object that we can rich to ObjectId of each inserted instance
-        x = my_col.insert_many(ready_to_insert)
-        # check the number of accepted rectangulars and inserted rectangulars 
-        assert len(x.inserted_ids)== len(ready_to_insert)
-        return {"note":"insertion success"}
+        try:
+            # X is object that we can rich to ObjectId of each inserted instance
+            my_col.insert_many(ready_to_insert)
+            # check the number of accepted rectangulars and inserted rectangulars 
+            return {"note":"insertion success"}
+        except:
+            return {"note":"someting went Wrong"}
 
     def get(self):
+        """ 
+        description: 
+        it returns a JSON with the special format and saves proper rectangular
+        """
         return [x for x in my_col.find({},{ '_id': 0})]
             
 
@@ -40,7 +54,7 @@ class Rectangular():
     def __init__(self, x, y, width, height,time=None):
         """
         description: 
-            difine a Rectangular in X-Y coordinate
+            difine a rectangular in X-Y coordinate
         args:
             x: horizontal coordinate
             y: vertical coordinate 
