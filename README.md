@@ -1,6 +1,13 @@
 # Filtering Service
 this is a service that can select the proper rectangular based on Response class. It implemented with flask and MongoDB and for Restful leveraged from flask-restful.
 
+## Installation
+first, build a virtual environment then run
+```
+pip install -r requirements.txt
+```
+
+
 ## Respond class
 It has two methods (post and get). 
 Post method take json file on http://localhost:5000/ in this format
