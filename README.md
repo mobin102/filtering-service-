@@ -14,7 +14,7 @@ Post method take json file on http://localhost:5000/ in this format
     ]
 }
 ``` 
-Get method answer on http://localhost:5000/
+Get method answer on http://localhost:5000/ in this manner
 ```
 [
     {"x": number , "y": number , "width": number , "height": number , "time":"YYYY-MM-DD HH:mm:ss"},
