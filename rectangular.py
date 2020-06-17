@@ -39,48 +39,48 @@ class Rectangular():
 
         #indicting which one in the right or left
         if self.x <= other.x:
-            self.left_rect = self
-            self.right_rect = other
+            left_rect = self
+            right_rect = other
         else:
-            self.left_rect = other
-            self.right_rect = self
+            left_rect = other
+            right_rect = self
 
         #indicting which one in the top or bottom 
         if self.y  >= other.y:
-            self.top_rect = self
-            self.bottom_rect = other
+            top_rect = self
+            bottom_rect = other
         else:
-            self.top_rect = other
-            self.bottom_rect = self
+            top_rect = other
+            bottom_rect = self
         
         #calculating overlap width
         #No overlap
-        if self.left_rect.x + self.left_rect.width <= self.right_rect.x:
+        if left_rect.x + left_rect.width <= right_rect.x:
             self.overlap_width = 0
 
         #fully overlap
-        elif (self.left_rect.x + self.left_rect.width) >= (self.right_rect.x+self.right_rect.width):
-            self.overlap_width =  self.right_rect.width
+        elif (left_rect.x + left_rect.width) >= (right_rect.x+right_rect.width):
+            self.overlap_width =  right_rect.width
 
         #partialy overlap
         else:
-            self.overlap_width = (self.left_rect.x + self.left_rect.width) - self.right_rect.x 
+            self.overlap_width = (left_rect.x + left_rect.width) - right_rect.x 
         
         #==========================================================#
         #==========================================================#
         
         #calculating overlap height
         #No overlap
-        if self.bottom_rect.y + self.bottom_rect.height <= self.top_rect.y :
+        if bottom_rect.y + bottom_rect.height <= top_rect.y :
             self.overlap_height = 0
 
         #fully overlap
-        elif (self.bottom_rect.y + self.bottom_rect.height) >= (self.top_rect.y+self.top_rect.height):
-            self.overlap_height =  self.right_rect.height
+        elif (bottom_rect.y + bottom_rect.height) >= (top_rect.y + top_rect.height):
+            self.overlap_height = right_rect.height
 
         #partialy overlap
         else:
-            self.overlap_height = (self.bottom_rect.y + self.bottom_rect.height) - self.top_rect.y
+            self.overlap_height = (bottom_rect.y + bottom_rect.height) - top_rect.y
         
 
         if self.overlap_width > 0 and self.overlap_height > 0:
@@ -115,9 +115,9 @@ if __name__ == "__main__":
     area14 = r1._has_ratio(r4)
     area56 = r5._has_ratio(r6) 
     area57 = r5._has_ratio(r7)
-    for i in [area11,area12,area13,area14,area56,area57]:
-        if i :
-            print(i)
+    for area in [area11,area12,area13,area14,area56,area57]:
+        if area :
+            print(area)
 
 
 
